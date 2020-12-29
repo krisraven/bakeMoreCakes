@@ -11,14 +11,13 @@ describe('moreCakes', () => {
     const mockSecretSauce = ['mockSauceOne'];
 
     describe('When the ingredients are successfully mixed together', () => {
-      let result;
-
       beforeEach(async () => {
         mixTogether.mockResolvedValue('OK');
-        result = await createMoreCakes(mockInstructions, mockChocolate, mockSecretSauce);
       });
 
       it('should respond with an object with that has a status of Success', async () => {
+        const result = await createMoreCakes(mockInstructions, mockChocolate, mockSecretSauce);
+
         expect(result).toEqual(
           expect.objectContaining({ status: expect.stringContaining('success') })
         );
@@ -26,14 +25,13 @@ describe('moreCakes', () => {
     });
 
     describe('When the ingredients are NOT successfully mixed together', () => {
-      let result;
-
       beforeEach(async () => {
         mixTogether.mockResolvedValue({ errorMessage: 'ERROR' });
-        result = await createMoreCakes(mockInstructions, mockChocolate, mockSecretSauce);
       });
 
       it('should respond with an object with that has a status of Success', async () => {
+        const result = await createMoreCakes(mockInstructions, mockChocolate, mockSecretSauce);
+
         expect(result).toEqual(
           expect.objectContaining({ status: expect.stringContaining('failed') })
         );
@@ -45,10 +43,15 @@ describe('moreCakes', () => {
 
       beforeEach(async () => {
         mixTogether.mockResolvedValue('OK');
-        result = await createMoreCakes(mockInstructions, mockChocolate, mockMultipleSecretSauce);
       });
 
       it('should respond with an object that has a status of Success', async () => {
+        const result = await createMoreCakes(
+          mockInstructions,
+          mockChocolate,
+          mockMultipleSecretSauce
+        );
+
         expect(result).toEqual(
           expect.objectContaining({ status: expect.stringContaining('success') })
         );
