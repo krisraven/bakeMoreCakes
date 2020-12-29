@@ -56,6 +56,10 @@ describe('moreCakes', () => {
           expect.objectContaining({ status: expect.stringContaining('success') })
         );
       });
+
+      it('should call the function for each item in the array of Secret Sauces', async () => {
+        expect(mixTogether).toHaveBeenCalledTimes(3);
+      });
     });
   });
 });
